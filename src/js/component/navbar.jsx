@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import{useState} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {changeTitle} from "./actions.js";
 
 
 const Navbar = () => {
@@ -8,9 +10,14 @@ const Navbar = () => {
     const [title, setTitle]= useState('Start Bootcamp');
     const [newTitle,setNewTitle]=useState("");
 
+    const dispatch = useDispatch()
+
+    const state = useSelector((state) => state)
+    console.log(state);
+
     return(
         <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-            <a className="navbar-brand ps-3" href="#">{title}</a>
+            <a className="navbar-brand ps-3" href="#">{state.pageTitle}</a>
             <input 
 				type="text" 
 				onChange={(e) => setNewTitle(e.target.value)}                 
@@ -22,7 +29,7 @@ const Navbar = () => {
 				}}
 				placeholder="Give us a new title😎">								
 			</input>
-			<button onClick={()=> dispatch({type:CHANGE_TITLE})}>Send New Title</button>
+			<button onClick={()=> dispatch(changeTitle(newTitle))}>Send New Title</button>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
             </button>

@@ -9,7 +9,8 @@ function reducer(state = initialState, action) {
     switch (action.type) {
         case CHANGE_TITLE:
             return{
-                pageTitle: state.pageTitle
+                ...state,
+                pageTitle: action.pageTitle
             }
         default:
             return state;            

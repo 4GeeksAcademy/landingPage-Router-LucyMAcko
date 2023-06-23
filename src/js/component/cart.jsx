@@ -1,12 +1,11 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {CHANGE_TITLE} from "./actions.js";
+import {changeTitle} from "./actions.js";
 
 const Cart = () => {
 
     const state = useSelector((state) =>state);
     const dispatch = useDispatch();
-        console.log('state here ====>' , state);
 
     return (
         <div className="container">
@@ -23,7 +22,7 @@ const Cart = () => {
 				}}
 				placeholder="Give us a new title😎">								
 			</input>
-			<button onClick={()=> dispatch({type:CHANGE_TITLE})}></button>
+			<button onClick={()=> dispatch(changeTitle('New Title From Me'))}></button>
         </div>
     )
 }
