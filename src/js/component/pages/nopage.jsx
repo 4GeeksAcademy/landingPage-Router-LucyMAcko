@@ -7,11 +7,11 @@ const NoPage = () =>{
     return (
         <div className="container text-center mt-5">
             <div> 
-                <h1>Oops! No page available ... </h1>
+                <h1>Oops! URL not available ... </h1>
                 <img src={rigoImage} />
             </div>
             <div className="mt-5">
-                <button onClick={() => navigate("/home")}>Take me Home💕</button>
+                <button className="btn btn-light" onClick={() => navigate("/home")}>E.T. calling Home💕</button>
             </div>
         </div>
     )

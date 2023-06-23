@@ -1,32 +1,43 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import{useState} from "react";
 
-const Navbar = (props) => {
 
-    const {navItems} = props;
+const Navbar = () => {
+    const navigate = useNavigate();
+    const [title, setTitle]= useState('Start Bootcamp');
+    const [newTitle,setNewTitle]=useState("");
 
-    const renderNavItems = () =>{
-        
-      return navItems.map((item) => {
-            return (
-                <li className="nav-item">
-                    <a className="nav-link text-white" aria-current="page" href="#">{item.label}</a>
-                </li>
-            )
-        })       
-}
-    
     return(
-        <nav className="navbar navbar-expand-lg fixed-top bg-body-tertiary bg-dark">
-            <div className="container-fluid">
-                <a className="navbar-brand active text-white ms-4 text-white fw-bolder" href="#">{props.title}</a>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul className="navbar-nav position-absolute top-0 end-0 me-5 mt-1">
-                        {renderNavItems()}
-                    </ul>
-                </div>
+        <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+            <a className="navbar-brand ps-3" href="#">{title}</a>
+            <input 
+				type="text" 
+				onChange={(e) => setNewTitle(e.target.value)}                 
+				value={newTitle}
+				onKeyDown={(e) =>{
+				if (e.key === 'Enter'){
+				    setTitle(newTitle);
+				}
+				}}
+				placeholder="Give us a new title😎">								
+			</input>
+			<button onClick={()=> dispatch({type:CHANGE_TITLE})}>Send New Title</button>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul className="navbar-nav pe-3 text-white">
+                <li className="nav-item">
+                <a className="nav-link" onClick={() => navigate("/home")}>Home</a>
+                </li>
+                <li className="nav-item">
+                <a className="nav-link" onClick={() => navigate("/about-us")}>About Us</a>
+                </li>
+                <li className="nav-item">
+                <a className="nav-link" onClick={() => navigate("/login")}>Log In</a>
+                </li>
+            </ul>
             </div>
         </nav>
     )
